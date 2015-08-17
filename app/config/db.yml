@@ -1,0 +1,5 @@
+adapter: mysql
+database: person
+username: root
+password: root
+host: localhost
