@@ -4,6 +4,8 @@ require './router.rb'
 require './controller/person_controller.rb'
 require './controller/session_controller.rb'
 
+use Rack::CommonLogger
+use Rack::ShowExceptions
 use Rack::Static,
   :urls => ["/media/images", "/media/js", "/media/css"],
   :root => "public"
@@ -16,12 +18,10 @@ class Dispatcher
     @req_method = @request.request_method
     @req_params = @request.params
     controller_obj, action, id = Router.call(@req_path, @req_method, @req_params)
-
-
-
-
-
-
+    response = Rack::Response.new
+    @res = controller_obj.call(action,id)
+    response.write @res
+    response.finish
   end
 end
 run Dispatcher
