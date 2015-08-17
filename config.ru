@@ -1,8 +1,8 @@
 require 'rack'
 require 'rack/server'
-require './router.rb'
-require './controller/person_controller.rb'
-require './controller/session_controller.rb'
+require './app/router.rb'
+require './app/controller/person_controller.rb'
+require './app/controller/session_controller.rb'
 
 use Rack::CommonLogger
 use Rack::ShowExceptions
@@ -19,7 +19,7 @@ class Dispatcher
     @req_params = @request.params
     controller_obj, action, id = Router.call(@req_path, @req_method, @req_params)
     response = Rack::Response.new
-    @res = controller_obj.call(action,id)
+    @res = controller_obj.call(id)
     response.write @res
     response.finish
   end
