@@ -1,8 +1,6 @@
 require 'rack'
 require 'rack/server'
 require './app/router.rb'
-require './app/controller/person_controller.rb'
-require './app/controller/session_controller.rb'
 
 use Rack::CommonLogger
 use Rack::ShowExceptions
