@@ -1,19 +1,16 @@
 require_relative 'main_controller'
 
 class PersonController < MainController
-  def initialize(action)
-    @action = action
-  end
-  def call(id = nil)
-    "hello #{id}"
+  def initialize(id)
+    @id= id
   end
 
-  def index(id)
-
+  def index()
+      "THis in index page"
   end
 
-  def show(id)
-
+  def show()
+    "This is show page of #{@id}"
   end
 
 end

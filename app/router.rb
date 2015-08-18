@@ -5,8 +5,9 @@ class Router
   def self.call(req_path, req_method, req_params)
     @req_path, @req_method, @req_params = req_path, req_method, req_params
     @controller, @action, @id = get_url(@req_path)
-    obj = class_load(@controller, @action)
-    [obj, @action, @id]
+    obj = class_load(@controller, @action, @id)
+
+    [obj, @action]
   end
 
   def self.get_url(path)
@@ -27,11 +28,11 @@ class Router
     end
   end
 
-  def self.class_load(controller, action)
+  def self.class_load(controller, action, id)
     cont_file="./app/controller/"+controller+"_controller.rb"
 		load cont_file
     class_name = controller.capitalize + "Controller"
-    ob = Module.const_get(class_name).new(action)
+    ob = Module.const_get(class_name).new(id)
 
     return ob
   end

@@ -17,9 +17,9 @@ class Dispatcher
     @req_path = @request.path_info
     @req_method = @request.request_method
     @req_params = @request.params
-    controller_obj, action, id = Router.call(@req_path, @req_method, @req_params)
+    controller_obj, action = Router.call(@req_path, @req_method, @req_params)
     response = Rack::Response.new
-    @res = controller_obj.call(id)
+    @res = controller_obj.send(action)
     response.write @res
     response.finish
   end

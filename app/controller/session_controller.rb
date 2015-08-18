@@ -1,18 +1,15 @@
 require_relative 'main_controller'
 
 class SessionController < MainController
-  def initialize(action)
-    @action = action
-  end
-  def call(action, id)
-    "hello #{action}"
+  def initialize(id)
+    @aid = id
   end
 
   def login()
-
+    "This is login page"
   end
 
   def create()
-
+    "This is Registration page"
   end
 end
