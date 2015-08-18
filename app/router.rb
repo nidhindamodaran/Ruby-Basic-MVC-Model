@@ -15,7 +15,6 @@ class Router
 
       when /^\/$/
         ["person","index", nil]
-
       when /^\/(person)$/
         ["person","index", nil]
 
@@ -32,7 +31,6 @@ class Router
 
   def self.class_load(controller, action, id, params)
     cont_file="./app/controller/"+controller+"_controller.rb"
-		load cont_file
     class_name = controller.capitalize + "Controller"
     ob = Module.const_get(class_name).new(id, params)
 

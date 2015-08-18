@@ -18,8 +18,13 @@ class Dispatcher
     controller_obj, action = Router.call(@req_path, @req_method, @req_params)
     response = Rack::Response.new
     @res = controller_obj.send(action)
-    response.write @res
-    response.finish
+    if controller_obj.instance_variable_get(:@status) == 301
+      response.redirect @res
+      response.finish
+    else
+      response.write @res
+      response.finish
+    end
   end
 end
 run Dispatcher
