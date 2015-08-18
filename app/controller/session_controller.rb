@@ -6,10 +6,10 @@ class SessionController < MainController
   end
 
   def login()
-    "This is login page"
+    render "login"
   end
 
   def create()
-    "This is Registration page"
+    render "registration"
   end
 end

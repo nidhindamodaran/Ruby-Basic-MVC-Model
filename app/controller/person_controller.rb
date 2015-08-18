@@ -6,11 +6,11 @@ class PersonController < MainController
   end
 
   def index()
-      "THis in index page"
+    render "index"
   end
 
   def show()
-    "This is show page of #{@id}"
+    render "person"
   end
 
 end

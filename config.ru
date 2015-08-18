@@ -7,7 +7,7 @@ require './app/controller/session_controller.rb'
 use Rack::CommonLogger
 use Rack::ShowExceptions
 use Rack::Static,
-  :urls => ["/media/images", "/media/js", "/media/css"],
+  :urls => ["/media/fonts", "/media/js", "/media/css"],
   :root => "public"
 
 class Dispatcher
