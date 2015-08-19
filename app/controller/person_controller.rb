@@ -8,11 +8,20 @@ class PersonController < MainController
   end
 
   def index()
+    @person = Person.all
+    @person.each do |person|
+      puts person.username
+    end
     render "index"
   end
 
   def show()
-    render "person"
+    begin
+      @res = Person.find("#{@id}")
+      render "person"
+    rescue
+      render "fail"
+    end
   end
 
 end

@@ -22,10 +22,14 @@ class Router
         ["person","show","#{$2}"]
       when /^\/session\/(login)$/
         ["session","login", nil]
+      when /^\/session\/(login_check)$/
+        ["session","login_check", nil]
       when /^\/session\/(register)$/
         ["session","new",nil]
       when /^\/session\/(create)$/
         ["session","create",nil]
+      else
+        ["session","notfound",nil]
     end
   end
 

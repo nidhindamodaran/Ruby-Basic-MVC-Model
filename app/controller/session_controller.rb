@@ -8,6 +8,20 @@ class SessionController < MainController
     @params = params
   end
 
+
+
+  def login_check()
+    username = @params['username']
+    password = Secure.encrypt_md5(@params['password'])
+    result = Person.find_by_username(username)
+    if (result.present?) && (result.password == password)
+      @status = 301
+      '../../person'
+    else
+      puts @error_login = "Something went wrong please check your username password "
+      login()
+    end
+  end
   def login()
     render "login"
   end
@@ -19,14 +33,19 @@ class SessionController < MainController
       @status = 301
       'login'
     else
-      @status = 301
-      'register'
+      puts @errors ||= person.errors.full_messages
+      new()
     end
 
   end
 
   def new()
     render "registration"
+  end
+
+  def notfound()
+    render "fail"
+
   end
 end
 

@@ -1,7 +1,7 @@
 require 'mysql'
 require 'active_record'
 require 'yaml'
-require 'digest/md5'
+
 
 dbconfig = YAML::load(File.open('./config/db.yml'))
 ActiveRecord::Base.establish_connection(dbconfig)
@@ -20,5 +20,9 @@ end
 =end
 
 class Person < ActiveRecord::Base
-
+  validates :username, presence:true, uniqueness:true, length: { minimum:5 , message: "Minimum length is 5"}
+  validates :name, :dept , presence:true
+  validates :age, presence:true, numericality: { only_integer: true, message: "Enter correct Age "}, length: { maximum: 2, message: "Entered Age is Incorrect"}
+  validates :mob, presence:true, uniqueness:true, numericality: { only_integer: true, message: "Enter correct Mobile Number "}, length: { is: 10, message: "Please check Mobile Number" }
+  validates :email, presence:true, uniqueness:true, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i, message: "Enter correct Email"}
 end

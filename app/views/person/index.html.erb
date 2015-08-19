@@ -1,1 +1,22 @@
-<h1>Index Page</h1>
+
+  <h1>Student List</h1>
+
+<table class="table table-hover">
+    <th>
+       Student ID
+    </th>
+    <th>
+      Name
+    </th>
+    <th>
+      Details
+    </th>
+  <% @person.each do |person| %>
+  <tr>
+    <td> <%= person.id %> </td>
+    <td> <%= person.username %> </td>
+    <td><a href="person/<%= person.id %>"><button type="button" class="btn-primary">Show</button></td>
+  </tr>
+  <% end %>
+
+</table>
