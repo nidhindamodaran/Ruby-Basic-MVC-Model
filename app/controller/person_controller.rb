@@ -2,26 +2,32 @@ require_relative 'main_controller'
 require './app/models/person.rb'
 
 class PersonController < MainController
-  def initialize(id, params)
-    @id= id
-    @params = params
-  end
-
   def index()
-    @person = Person.all
-    @person.each do |person|
-      puts person.username
+    user_id =  @session[:user_id]
+    puts user_id.nil?
+    if user_id.nil?
+      render "login"
+    else
+      @person = Person.all
+      @person.each do |person|
+        person.username
+      end
+      render "index"
     end
-    render "index"
   end
 
   def show()
+    user_id = @session[:user_id]
+    if user_id.nil?
+      render "login"
+    else
     begin
-      @res = Person.find("#{@id}")
+      @res = Person.find(@id)
       render "person"
     rescue
       render "fail"
     end
+  end
   end
 
 end

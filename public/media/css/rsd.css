@@ -1,12 +1,21 @@
-input{
-  margin: 25px;
-}
 .wrapper{
   width: 500px;
 }
-.btn{
-  margin-left: 25px;
-}
+
 .error-template {padding: 40px 15px;text-align: center;}
 .error-actions {margin-top:15px;margin-bottom:15px;}
 .error-actions .btn { margin-right:10px; }
+
+.jumbotron{
+ background-image: url(/media/images/back.jpg);
+ color: white;
+text-shadow: 10px 10px 10px black;
+height:130px;
+}
+.jumbotron p{
+  color: black;
+}
+.alert li{
+  margin-left: 20px;
+  font-size: 15px;
+}

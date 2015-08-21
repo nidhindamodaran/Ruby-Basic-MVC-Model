@@ -1,20 +1,24 @@
 
-  <h1>Student List</h1>
+  <center>
+    <h1>Student List</h1>
+  </center>
 
 <table class="table table-hover">
+  <thead>
     <th>
-       Student ID
+       <h4>Student ID</h4>
     </th>
     <th>
-      Name
+      <h4>Name</h4>
     </th>
     <th>
-      Details
+      <h4>Details</h4>
     </th>
+  </thead>
   <% @person.each do |person| %>
   <tr>
     <td> <%= person.id %> </td>
-    <td> <%= person.username %> </td>
+    <td> <%= person.name %> </td>
     <td><a href="person/<%= person.id %>"><button type="button" class="btn-primary">Show</button></td>
   </tr>
   <% end %>

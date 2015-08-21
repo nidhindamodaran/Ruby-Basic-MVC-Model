@@ -6,25 +6,37 @@
   <!-- bootstrap included -->
   <link rel="stylesheet" href = "/media/css/bootstrap.min.css">
   <link rel="stylesheet" href = "/media/css/rsd.css">
+  <link rel="stylesheet" href = "/media/css/logincard.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+  <script src="/media/js/logincard.js"></script>
   <title>Rack Student Data</title>
 </head>
 <body>
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">RSDC</a>
+      <a class="navbar-brand" href="/"> RSDC</a>
     </div>
+
+
+    <ul class="nav navbar-nav navbar-right">
+
+      <% if @session[:user_id].nil? %>
+      <li><a href="/session/login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+      <% end %>
+      <% if @session[:user_id].nil? %>
+      <li><a href="/session/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <% end %>
+       <% if !@session[:user_id].nil? %>
+       <li><a href="/person/<%= @session[:user_id] %> "><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<%= getname(@session[:user_id]) %></a></li>
+      <li><a href="/session/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      <% end %>
+
+    </ul>
   </div>
 </nav>
   <div class="container">
-    <div class="jumbotron">
-      <h1>Rack Student Data Collector</h1>
-      <p>
-        Collects student data.
-      </p>
-    </div>
     <div class="container">
 
         <%= render_view(template) %>

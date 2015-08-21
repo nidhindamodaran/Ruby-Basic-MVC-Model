@@ -1,17 +1,29 @@
 <div class="page-header">
-  <h1>Student Login</h1>
+  <h1><center>
+    Student Login
+  </center></h1>
 </div>
 <% if @error_login.present? %>
-<div class="alert alert-danger">
+<div class="alert alert-danger fade in">
+  <a href="login" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <strong>Error Login !</strong> <%= @error_login %>
 </div>
 <% end %>
-
-
-<div class="wrapper">
-    <form class="form-signin" method="post" action="login_check">
-      <input type="text" class="form-control" name="username" placeholder="Username" autofocus="" required="" />
-      <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-    </form>
-  </div>
+<div class="card card-container">
+            <img class="profile-img-card" src="//lh4.googleusercontent.com/-gGAIlDI1B7c/AAAAAAAAAAI/AAAAAAAAAAA/A0oN7kSU51U/photo.jpg?sz=120" alt="" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin" action="/session/login_check" method="post">
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="input" id="inputEmail" class="form-control" name="username" placeholder="Username" required autofocus>
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+            </form>
+            <a href="#" class="forgot-password">
+                Forgot the password?
+            </a>
+        </div>
