@@ -20,7 +20,7 @@ class SessionController < MainController
   end
 
   def login()
-    user_id = @session[:user_id].nil?
+    user_id = @session[:user_id]
     if user_id.nil?
       render "login"
     else
@@ -29,7 +29,6 @@ class SessionController < MainController
   end
 
   def create()
-
     person = Person.new(@params)
     person.password = Secure.encrypt_md5(@params['password'])
     if person.save
@@ -42,7 +41,12 @@ class SessionController < MainController
   end
 
   def new()
-    render "registration"
+    user_id = @session[:user_id]
+    if user_id.nil?
+      render "registration"
+    else
+      redirect_to "/"
+    end
   end
 
   def notfound()
