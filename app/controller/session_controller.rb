@@ -34,6 +34,7 @@ class SessionController < MainController
     if person.save
       redirect_to "login"
     else
+      puts @errors
       @errors ||= person.errors.full_messages
       new()
     end

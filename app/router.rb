@@ -36,7 +36,7 @@ class Router
   def self.class_load(controller, action, id, params, session)
     cont_file = "./app/controller/"+controller+"_controller.rb"
     class_name = controller.capitalize + "Controller"
-    ob = Module.const_get(class_name).new(id, params, session)
+    ob = Object.const_get(class_name).new(id, params, session)
 
     return ob
   end
