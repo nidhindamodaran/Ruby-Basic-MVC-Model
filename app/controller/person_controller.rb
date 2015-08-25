@@ -2,7 +2,7 @@ require_relative 'main_controller'
 require './app/models/person.rb'
 
 class PersonController < MainController
-  def index()
+  def index
     user_id =  @session[:user_id]
     puts user_id.nil?
     if user_id.nil?
@@ -16,7 +16,7 @@ class PersonController < MainController
     end
   end
 
-  def show()
+  def show
     user_id = @session[:user_id]
     if user_id.nil?
       render "login"

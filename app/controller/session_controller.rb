@@ -3,7 +3,7 @@ require './app/models/person.rb'
 require 'digest/md5'
 
 class SessionController < MainController
-  def login_check()
+  def login_check
     username = @params['username']
     password = Secure.encrypt_md5(@params['password'])
     result = Person.find_by_username(username)
@@ -19,7 +19,7 @@ class SessionController < MainController
     end
   end
 
-  def login()
+  def login
     user_id = @session[:user_id]
     if user_id.nil?
       render "login"
@@ -28,7 +28,7 @@ class SessionController < MainController
     end
   end
 
-  def create()
+  def create
     person = Person.new(@params)
     person.password = Secure.encrypt_md5(@params['password'])
     if person.save
@@ -36,12 +36,12 @@ class SessionController < MainController
     else
       puts @errors
       @errors ||= person.errors.full_messages
-      new()
+      new
     end
 
   end
 
-  def new()
+  def new
     user_id = @session[:user_id]
     if user_id.nil?
       render "registration"
@@ -50,12 +50,12 @@ class SessionController < MainController
     end
   end
 
-  def notfound()
+  def notfound
     render "fail"
 
   end
 
-  def logout()
+  def logout
     if !@session[:user_id].nil?
 			@session.delete('user_id')
 		end
